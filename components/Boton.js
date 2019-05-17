@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo'
 
 export default class Boton extends Component {
-
-	onPress = () => {
-    console.log('click')
-  }
-
 	render() {
 		return (
-			<TouchableOpacity onPress={this.onPress} activeOpacity={0.7}>
+			<TouchableOpacity onPress={this.props.onPress} activeOpacity={0.7}>
         <LinearGradient
           colors={["#D2C5FB", "#C8B9FA", "#BBA9F9", "#B29EF8", "#AA93F8"]}
           start={[0, 0]}
