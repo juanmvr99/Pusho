@@ -2,13 +2,13 @@ import React from 'react'
 import { StyleSheet, View, StatusBar, Dimensions } from 'react-native'
 import { Constants } from 'expo'
 
-import Logo from '../Logo'
+import Logo from './Logo'
 import BlackRectangle from './BlackRectangle'
 import PurpleRectangle from './PurpleRectangle'
 
 {/*Este es un header solo para la pantalla de inicio, tiene el logo y todo incluido*/}
 
-export default class Header extends React.Component {
+export default class HomeHeader extends React.Component {
   render() {
     var screenWidth = Dimensions.get('window').width; //ancho de la pantalla
     return (

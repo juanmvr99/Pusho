@@ -13,7 +13,7 @@ export default class BackButton extends Component {
 	}
 }
 
-var size = 50;
+var size = 45;
 
 const styles = StyleSheet.create({
 	circulo: {

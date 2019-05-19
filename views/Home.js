@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Image, Dimensions } from 'react-native'
 import { Constants } from 'expo'
 
-import Header from '../components/home/Header'
+import Header from '../components/home/HomeHeader'
 import Boton from '../components/Boton'
 
 var screenWidth = Dimensions.get('window').width; //ancho de la pantalla
@@ -11,7 +11,7 @@ export default class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {console.log(screenWidth)}
+
         <Image
           source={require('../assets/background.png')}
           style={styles.bkg}
@@ -20,7 +20,7 @@ export default class Home extends Component {
         <View style={styles.buttonContainer}>
           <Boton 
             texto={'SOLO'}
-            onPress={() => this.props.navigation.navigate('Boton')} 
+            onPress={() => this.props.navigation.navigate('SoloSetup')} 
           />
           <Boton texto={'1 CONTRA 1'}/>
           <Boton texto={'ESTADISTICAS'}/>

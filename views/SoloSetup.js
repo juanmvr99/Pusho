@@ -1,16 +1,79 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Dimensions } from 'react-native'
+import { StyleSheet, View, Image, Text, Dimensions, TouchableOpacity } from 'react-native'
 import { Constants } from 'expo'
 
 import Header from '../components/Header'
 import Boton from '../components/Boton'
+import BackButton from '../components/BackButton'
 
 var screenWidth = Dimensions.get('window').width; //ancho de la pantalla
 
 export default class SoloSetup extends Component {
+  state = {
+    tiempo: 5,
+    mostrarLista: false
+  }
+  
+  handleClick = () => {
+    this.setState((prevState) => ({
+      mostrarLista: !prevState.mostrarLista
+    }));
+  }
+
+  setTime = (time) => {
+    this.setState((prevState) => ({
+      mostrarLista: !prevState.mostrarLista,
+      tiempo: time
+    }));
+  }
+
   render() {
     return (
       <View style={styles.container}>
+        <Header titulo={'SOLO'} goBack={this.props.navigation.goBack} />
+        <View style={styles.cuadroMorado} />
+        <View style={styles.CuadroNegro} />
+        <View style={styles.textView}>
+          <Text style={[styles.texto, {fontSize: 25, lineHeight: 30, marginBottom: 30}]}>Instrucciones</Text> 
+          <Text style={styles.texto}>1.Escoge el tiempo de duracion</Text>
+          <Text style={styles.texto}>2.Presiona INICIAR</Text>
+          <Text style={styles.texto}>3.Coloca tu telefono en una</Text>
+          <Text style={styles.texto}>posicion comoda</Text>
+          <Text style={styles.texto}>4.Toca la pantalla con la nariz</Text>
+          <Text style={styles.texto}>o tu dedo!</Text>
+        </View>          
+        {/*renderizado condicional de la lista de tiempos (cuando se le da al boton tiempo se muestra la lista)*/}
+        {this.state.mostrarLista && 
+          <View style={styles.lista}>
+              <View style={styles.tituloLista}>
+                <Text style={[styles.textoLista]}>SELECCIONE</Text>
+              </View>
+              <TouchableOpacity style={styles.itemLista} activeOpacity={0.7} onPress={() => this.setTime(30)}>
+                <Text style={styles.textoLista}>30s</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.itemLista} activeOpacity={0.7} onPress={() => this.setTime(60)}>  
+                <Text style={styles.textoLista}>1min</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.itemLista} activeOpacity={0.7} onPress={() => this.setTime(90)}>
+                <Text style={styles.textoLista}>1min 30s</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.itemLista, {borderBottomWidth: 0}]} activeOpacity={0.7} onPress={() => this.setTime(120)}>
+                <Text style={styles.textoLista}>2min</Text>
+              </TouchableOpacity>
+          </View>
+        }
+        <View style={styles.buttonContainer}>
+          <View style={{marginBottom: 20}}>
+            <Boton texto={'TIEMPO'}
+                   onPress={this.handleClick} 
+             />
+          </View>
+          <Boton 
+            texto={'INICIAR'} 
+            onPress={() => this.state.tiempo > 0 ? this.props.navigation.navigate('SoloGame') : null} 
+          />    
+          {/*COLOCAR ALERTA EN CASO DE QUE NO SELECCIONE TIEMPO*/}
+        </View>
         
       </View>  
     );
@@ -23,18 +86,68 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    //paddingTop: Constants.statusBarHeight //se supone que esto deberia ponerse para que no haga overlap con la statusbar pero al parecer no se necesita en mi tlf
+  },
+  
+  lista: {
+    position: 'absolute',
+    top: 140,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    borderRadius: 10,
+    borderColor: '#2c3942',
+    borderWidth: 2,
+    width: '60%'
+  },
+  
+  itemLista: {
+    padding: 15,
+    borderColor: '#2c3942',
+    borderBottomWidth: 2
+  },
+
+  tituloLista: {
+    backgroundColor: '#C8B9FA',
+    padding: 15,
+    borderColor: '#2c3942',
+    borderBottomWidth: 2
+  },
+
+  textoLista: {
+    color: '#2c3942',
+    fontSize: 25,
+    fontWeight: 'bold',
+    lineHeight: 32,
+    textAlign: 'center'
+  },
+
+  cuadroMorado: {
+    backgroundColor: '#C8B9FA',
+    height: 250,
+    width: '80%',
+    transform: [{translateX: -15}, {translateY: 55}, {rotate: '-70deg'}],
+
+  },
+
+  CuadroNegro: {
+    backgroundColor: '#2c3942',
+    height: 250,
+    width: '80%',
+    transform: [{translateX: 30}, {translateY: -195}, {rotate: '-70deg'}]
+  },
+  
+  textView: {
+    transform: [{translateY: -455}, {translateX: 30}]
+  },
+
+  texto: {
+    color:'white',
+    fontSize: 15,
+    fontWeight: 'bold',
+    lineHeight: 28
   },
 
   buttonContainer: {
-    flex: 1,
-    justifyContent: 'space-evenly'
-  },
-
-  bkg: {
-    position: 'absolute',
-    width: 380,
-    height: 380,
-    top: 260,
+    transform: [{translateY: -360}],
   }
 });

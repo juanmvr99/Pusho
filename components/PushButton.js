@@ -19,10 +19,6 @@ export default class PushButton extends Component {
 		return (
 			<View style={styles.container}>
 				
-				<View style={{alignSelf: 'flex-start'}}>
-					<BackButton onPress={() => this.props.navigation.goBack()}/>
-				</View>
-
 				<TouchableOpacity activeOpacity={0.7} onPress={this.sumar}>
 					<View style={styles.outerCircle}>
 						<View style={styles.innerCircle}>
@@ -30,7 +26,7 @@ export default class PushButton extends Component {
 						</View>
 					</View>	
 				</TouchableOpacity>
-				<Text style={[styles.text, {color: '#2c3941'}]}>{this.state.count}</Text>
+				{/*<Text style={[styles.text, {color: '#2c3941'}]}>{this.state.count}</Text>*/}
 
 			</View>
 		);
@@ -39,7 +35,6 @@ export default class PushButton extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1, 
 		justifyContent: 'center', 
 		alignItems: 'center'
 	},
