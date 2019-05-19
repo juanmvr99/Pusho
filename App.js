@@ -3,18 +3,20 @@ import { StyleSheet, View} from 'react-native'
 import { createStackNavigator, createAppContainer } from "react-navigation"
 
 import Home from './views/Home'
-import SoloSetup from './views/SoloSetup'
-import SoloGame from './views/SoloGame'
+import Setup from './views/Setup'
+import Game from './views/Game'
+import Estadisticas from './views/Estadisticas'
 
 //esto es para el routing entre vistas (recibe un objeto de configuracion de rutas y un objeto de opciones, retorna un componente)
 const AppNavigator = createStackNavigator(
   { //rutas
     Home: Home,
-    SoloSetup: SoloSetup,
-    SoloGame: SoloGame 
+    Setup: Setup,
+    Game: Game,
+    Estadisticas: Estadisticas 
   },
   { //opciones
-    initialRouteName: 'SoloSetup',
+    initialRouteName: 'Home',
     headerMode: 'none'
   }
 );

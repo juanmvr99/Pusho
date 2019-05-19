@@ -4,29 +4,17 @@ import { View, StyleSheet, Text, TouchableOpacity, Button } from 'react-native'
 import BackButton from './BackButton'
 
 export default class PushButton extends Component {
-	state = {
-		count: 0
-	}
-
-	//esta funcion se llama cada vez que se presiona el boton y hay que hacer algo con la cuenta
-	sumar = () => {
-		this.setState((prevState) => {
-			return {count: prevState.count + 1}
-		});
-	}
-	
 	render() {
 		return (
 			<View style={styles.container}>
 				
-				<TouchableOpacity activeOpacity={0.7} onPress={this.sumar}>
+				<TouchableOpacity activeOpacity={0.7} onPress={this.props.onPress}>
 					<View style={styles.outerCircle}>
 						<View style={styles.innerCircle}>
 						  <Text style={styles.text}>Push!</Text>	
 						</View>
 					</View>	
 				</TouchableOpacity>
-				{/*<Text style={[styles.text, {color: '#2c3941'}]}>{this.state.count}</Text>*/}
 
 			</View>
 		);

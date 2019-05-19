@@ -20,9 +20,12 @@ export default class Home extends Component {
         <View style={styles.buttonContainer}>
           <Boton 
             texto={'SOLO'}
-            onPress={() => this.props.navigation.navigate('SoloSetup')} 
+            onPress={() => this.props.navigation.navigate('Setup', {modo: 'SOLO'})} 
           />
-          <Boton texto={'1 CONTRA 1'}/>
+          <Boton 
+            texto={'1 VS 1'}
+            onPress={() => this.props.navigation.navigate('Setup', {modo: '1 VS 1'})}
+          />
           <Boton texto={'ESTADISTICAS'}/>
         </View>
 

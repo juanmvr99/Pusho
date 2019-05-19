@@ -1,33 +1,78 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text, Dimensions } from 'react-native'
+import { StyleSheet, View, TouchableOpacity, Text, Dimensions } from 'react-native'
 
-export class Timer extends Component {
-  state = {
-    timer: this.props.time,
-    interval: null
+//NO ME PREGUNTEN COMO FUNCIONA ESTO POQUE NO SE, ES DE INTERNET XD
+export default class Timer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { time: {}, seconds: this.props.time };
+    this.timer = 0;
+    this.startTimer = this.startTimer.bind(this);
+    this.countDown = this.countDown.bind(this);
   }
 
-  
+  secondsToTime(secs) {
+    let divisor_for_minutes = secs % (60 * 60);
+    let minutes = Math.floor(divisor_for_minutes / 60);
+
+    let divisor_for_seconds = divisor_for_minutes % 60;
+    let seconds = Math.ceil(divisor_for_seconds);
+    
+    let obj = {
+      "min": minutes,
+      "sec": seconds
+    };
+    return obj;
+  }
 
   componentDidMount() {
-    this.state.interval = setInterval( () => this.setState((prevState) => ({timer: prevState.timer--})), 1000);
-  }
-
-  componentDidUpdate() {
-    if(this.state.timer === 1){ 
-      clearInterval(this.state.interval);
-    }
+    let timeLeftVar = this.secondsToTime(this.state.seconds);
+    this.setState({ time: timeLeftVar });
   }
 
   componentWillUnmount() {
-   clearInterval(this.state.interval);
- }
+    clearInterval(this.timer);
+  }
 
- render() {
-  return (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <Text> {this.state.timer} </Text>
-    </View> 
-    )
-}
-}
+  startTimer() {
+    if (this.timer == 0 && this.state.seconds > 0) {
+      this.timer = setInterval(this.countDown, 1000);
+    }
+  }
+
+  countDown() {
+    let seconds = this.state.seconds - 1;
+    this.setState({
+      time: this.secondsToTime(seconds),
+      seconds: seconds
+    });
+    
+    if (seconds == 0) { 
+      clearInterval(this.timer);
+      this.props.navigate();
+    }
+  }
+
+  render() {
+    return(
+      <View style={styles.MainContainer}>
+        {this.startTimer()}
+        <Text style={styles.timer}>
+          {this.state.time.min} : {this.state.time.sec < 10 ? '0'+this.state.time.sec : this.state.time.sec}
+        </Text>
+      </View>
+    );
+  }
+} 
+ 
+const styles = StyleSheet.create({
+  MainContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  
+  timer: {
+    color: '#7cd0b9',
+    fontSize: 42,
+  }
+});

@@ -10,7 +10,7 @@ var screenWidth = Dimensions.get('window').width; //ancho de la pantalla
 
 export default class SoloSetup extends Component {
   state = {
-    tiempo: 5,
+    tiempo: 0,
     mostrarLista: false
   }
   
@@ -28,17 +28,18 @@ export default class SoloSetup extends Component {
   }
 
   render() {
+    const modo = this.props.navigation.getParam('modo', 'REVISA');
     return (
       <View style={styles.container}>
-        <Header titulo={'SOLO'} goBack={this.props.navigation.goBack} />
+        <Header titulo={modo} goBack={this.props.navigation.goBack} />
         <View style={styles.cuadroMorado} />
         <View style={styles.CuadroNegro} />
         <View style={styles.textView}>
           <Text style={[styles.texto, {fontSize: 25, lineHeight: 30, marginBottom: 30}]}>Instrucciones</Text> 
           <Text style={styles.texto}>1.Escoge el tiempo de duracion</Text>
-          <Text style={styles.texto}>2.Presiona INICIAR</Text>
-          <Text style={styles.texto}>3.Coloca tu telefono en una</Text>
+          <Text style={styles.texto}>2.Coloca tu telefono en una</Text>
           <Text style={styles.texto}>posicion comoda</Text>
+          <Text style={styles.texto}>3.Presiona INICIAR</Text>
           <Text style={styles.texto}>4.Toca la pantalla con la nariz</Text>
           <Text style={styles.texto}>o tu dedo!</Text>
         </View>          
@@ -66,13 +67,15 @@ export default class SoloSetup extends Component {
           <View style={{marginBottom: 20}}>
             <Boton texto={'TIEMPO'}
                    onPress={this.handleClick} 
-             />
+            />
           </View>
           <Boton 
             texto={'INICIAR'} 
-            onPress={() => this.state.tiempo > 0 ? this.props.navigation.navigate('SoloGame') : null} 
+            onPress={() => this.state.tiempo > 0 ? 
+                           this.props.navigation.navigate('Game', {tiempo: this.state.tiempo, modo: modo}) : 
+                           null} 
           />    
-          {/*COLOCAR ALERTA EN CASO DE QUE NO SELECCIONE TIEMPO*/}
+          {/*COLOCAR ALERTA EN CASO DE QUE NO SELECCIONE TIEMPO EN VEZ DEL NULL*/}
         </View>
         
       </View>  
