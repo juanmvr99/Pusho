@@ -72,7 +72,7 @@ export default class SoloSetup extends Component {
           <Boton 
             texto={'INICIAR'} 
             onPress={() => this.state.tiempo > 0 ? 
-                           this.props.navigation.navigate('Game', {tiempo: this.state.tiempo, modo: modo}) : 
+                           this.props.navigation.navigate('Game', {tiempo: this.state.tiempo, modo: modo, turno: 1}) : 
                            null} 
           />    
           {/*COLOCAR ALERTA EN CASO DE QUE NO SELECCIONE TIEMPO EN VEZ DEL NULL*/}

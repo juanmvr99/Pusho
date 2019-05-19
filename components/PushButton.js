@@ -9,9 +9,9 @@ export default class PushButton extends Component {
 			<View style={styles.container}>
 				
 				<TouchableOpacity activeOpacity={0.7} onPress={this.props.onPress}>
-					<View style={styles.outerCircle}>
-						<View style={styles.innerCircle}>
-						  <Text style={styles.text}>Push!</Text>	
+					<View style={[styles.outerCircle, {borderColor: this.props.color}]}>
+						<View style={[styles.innerCircle, {borderColor: this.props.color}]}>
+						  <Text style={[styles.text, {color: this.props.color}]}>Push!</Text>	
 						</View>
 					</View>	
 				</TouchableOpacity>

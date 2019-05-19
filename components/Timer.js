@@ -57,7 +57,7 @@ export default class Timer extends Component {
     return(
       <View style={styles.MainContainer}>
         {this.startTimer()}
-        <Text style={styles.timer}>
+        <Text style={[styles.timer, {color: this.props.color}]}>
           {this.state.time.min} : {this.state.time.sec < 10 ? '0'+this.state.time.sec : this.state.time.sec}
         </Text>
       </View>
