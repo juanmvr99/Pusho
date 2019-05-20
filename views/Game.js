@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text, Dimensions } from 'react-native'
+import { StyleSheet, View, Text, Dimensions } from 'react-native'
 import { Constants } from 'expo'
 
 import Header from '../components/Header'
-import BackButton from '../components/BackButton'
 import PushButton from '../components/PushButton'
 import Boton from '../components/Boton'
 import Timer from '../components/Timer'
@@ -24,19 +23,22 @@ export default class SoloSetup extends Component {
   
   navegar = () => {
     const modo = this.props.navigation.getParam('modo', 'REVISA');
+    const tiempo = this.props.navigation.getParam('tiempo', 6969);
+
     if (modo == 'SOLO') {
-      this.props.navigation.navigate('Home'); //aqui va la pantalla final en vez de home y guardar los datos
+      this.props.navigation.navigate('Resultados', {modo: modo, resultado: this.state.count, tiempo: tiempo}); 
       return;
     }
     //caso de 2 jugadores
     this.props.navigation.getParam('turno', 1) == 1 ? 
-      this.props.navigation.push('Game', {modo: modo, tiempo: this.props.navigation.getParam('tiempo', 6969), turno: 2}) :
-      this.props.navigation.navigate('Home')
+      this.props.navigation.push('Game', {modo: modo, tiempo: tiempo, turno: 2}) :
+      this.props.navigation.navigate('Resultados', {modo: modo});
   }
 
   render() {
     const modo = this.props.navigation.getParam('modo', 'REVISA');
-    var color = modo == 'SOLO' ? '#7cd0b9' : '#aa93f8'; //esto es para pintar las cosas del color del jugador
+    //esto es para pintar las cosas del color del jugador
+    var color = modo == 'SOLO' ? '#7cd0b9' : '#aa93f8'; 
     if (modo == '1 VS 1' && this.props.navigation.getParam('turno', 1) == 1) {
       color = '#7cd0b9' 
     }
@@ -65,7 +67,7 @@ export default class SoloSetup extends Component {
             />
             <Boton 
               texto={'ME RINDO'} 
-              onPress={() => this.props.navigation.navigate('Home')} 
+              onPress={() => this.navegar()} 
               ancho={150}
               color={color}
             />

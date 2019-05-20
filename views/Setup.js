@@ -49,7 +49,7 @@ export default class SoloSetup extends Component {
               <View style={styles.tituloLista}>
                 <Text style={[styles.textoLista]}>SELECCIONE</Text>
               </View>
-              <TouchableOpacity style={styles.itemLista} activeOpacity={0.7} onPress={() => this.setTime(30)}>
+              <TouchableOpacity style={styles.itemLista} activeOpacity={0.7} onPress={() => this.setTime(3)}>
                 <Text style={styles.textoLista}>30s</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.itemLista} activeOpacity={0.7} onPress={() => this.setTime(60)}>  

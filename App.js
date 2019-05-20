@@ -6,6 +6,7 @@ import Home from './views/Home'
 import Setup from './views/Setup'
 import Game from './views/Game'
 import Estadisticas from './views/Estadisticas'
+import Resultados from './views/Resultados'
 
 //esto es para el routing entre vistas (recibe un objeto de configuracion de rutas y un objeto de opciones, retorna un componente)
 const AppNavigator = createStackNavigator(
@@ -13,7 +14,8 @@ const AppNavigator = createStackNavigator(
     Home: Home,
     Setup: Setup,
     Game: Game,
-    Estadisticas: Estadisticas 
+    Estadisticas: Estadisticas,
+    Resultados: Resultados 
   },
   { //opciones
     initialRouteName: 'Home',
