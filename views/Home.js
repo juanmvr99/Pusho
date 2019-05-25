@@ -26,7 +26,10 @@ export default class Home extends Component {
             texto={'1 VS 1'}
             onPress={() => this.props.navigation.navigate('Setup', {modo: '1 VS 1'})}
           />
-          <Boton texto={'ESTADISTICAS'}/>
+          <Boton 
+            texto={'ESTADISTICAS'}
+            onPress={() => this.props.navigation.navigate('Estadisticas')}
+          />
         </View>
 
       </View>  

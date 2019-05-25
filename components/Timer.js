@@ -1,6 +1,39 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, TouchableOpacity, Text, Dimensions } from 'react-native'
 
+//Esta verga ya no se usa ni siquiera pero la deje pal recuerdo
+export default class Timer extends Component {
+  render() {
+    return(
+      <View style={styles.MainContainer}>
+
+        {this.props.startTimer()}
+        <Text style={[styles.timer, {color: this.props.color}]}>
+          {this.state.time.min} : {this.state.time.sec < 10 ? '0'+this.state.time.sec : this.state.time.sec}
+        </Text>
+        
+      </View>
+    );
+  }
+} 
+ 
+const styles = StyleSheet.create({
+  MainContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  
+  timer: {
+    color: '#7cd0b9',
+    fontSize: 42,
+  }
+});
+
+/*
+      CODIGO ANTERIOR DEL TIMER, LO DEJO AQUI POR SI ES NECESARIO
+import React, { Component } from 'react'
+import { StyleSheet, View, TouchableOpacity, Text, Dimensions } from 'react-native'
+
 //NO ME PREGUNTEN COMO FUNCIONA ESTO POQUE NO SE, ES DE INTERNET XD
 export default class Timer extends Component {
   constructor(props) {
@@ -75,4 +108,4 @@ const styles = StyleSheet.create({
     color: '#7cd0b9',
     fontSize: 42,
   }
-});
+});*/

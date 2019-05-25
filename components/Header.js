@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		paddingTop: Constants.statusBarHeight,
-		borderBottomLeftRadius: 15,
-		borderBottomRightRadius: 15
+		borderBottomLeftRadius: 0,
+		borderBottomRightRadius: 0
 	},
 
 	titulo: {

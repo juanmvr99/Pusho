@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View} from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { createStackNavigator, createAppContainer } from "react-navigation"
 
 import Home from './views/Home'
@@ -7,6 +7,8 @@ import Setup from './views/Setup'
 import Game from './views/Game'
 import Estadisticas from './views/Estadisticas'
 import Resultados from './views/Resultados'
+
+import PushButton from './components/PushButton'
 
 //esto es para el routing entre vistas (recibe un objeto de configuracion de rutas y un objeto de opciones, retorna un componente)
 const AppNavigator = createStackNavigator(

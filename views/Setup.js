@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Image, Text, Dimensions, TouchableOpacity, Alert } from 'react-native'
 import { Constants } from 'expo'
 
 import Header from '../components/Header'
@@ -13,7 +13,11 @@ export default class SoloSetup extends Component {
     tiempo: 0,
     mostrarLista: false
   }
-  
+
+  showAlert = () => {
+    Alert.alert('Selecciona un tiempo primero!')
+  }
+
   handleClick = () => {
     this.setState((prevState) => ({
       mostrarLista: !prevState.mostrarLista
@@ -31,6 +35,7 @@ export default class SoloSetup extends Component {
     const modo = this.props.navigation.getParam('modo', 'REVISA');
     return (
       <View style={styles.container}>
+
         <Header titulo={modo} goBack={this.props.navigation.goBack} />
         <View style={styles.cuadroMorado} />
         <View style={styles.CuadroNegro} />
@@ -41,7 +46,7 @@ export default class SoloSetup extends Component {
           <Text style={styles.texto}>posicion comoda</Text>
           <Text style={styles.texto}>3.Presiona INICIAR</Text>
           <Text style={styles.texto}>4.Toca la pantalla con la nariz</Text>
-          <Text style={styles.texto}>o tu dedo!</Text>
+          <Text style={styles.texto}>o dedo cada flexion!</Text>
         </View>          
         {/*renderizado condicional de la lista de tiempos (cuando se le da al boton tiempo se muestra la lista)*/}
         {this.state.mostrarLista && 
@@ -49,7 +54,7 @@ export default class SoloSetup extends Component {
               <View style={styles.tituloLista}>
                 <Text style={[styles.textoLista]}>SELECCIONE</Text>
               </View>
-              <TouchableOpacity style={styles.itemLista} activeOpacity={0.7} onPress={() => this.setTime(3)}>
+              <TouchableOpacity style={styles.itemLista} activeOpacity={0.7} onPress={() => this.setTime(10)}>
                 <Text style={styles.textoLista}>30s</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.itemLista} activeOpacity={0.7} onPress={() => this.setTime(60)}>  
@@ -73,9 +78,8 @@ export default class SoloSetup extends Component {
             texto={'INICIAR'} 
             onPress={() => this.state.tiempo > 0 ? 
                            this.props.navigation.navigate('Game', {tiempo: this.state.tiempo, modo: modo, turno: 1}) : 
-                           null} 
+                           this.showAlert()} 
           />    
-          {/*COLOCAR ALERTA EN CASO DE QUE NO SELECCIONE TIEMPO EN VEZ DEL NULL*/}
         </View>
         
       </View>  
